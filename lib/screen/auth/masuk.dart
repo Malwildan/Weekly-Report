@@ -52,58 +52,84 @@ class _DaftarState extends State<Masuk> {
                   ],
                 ),
                 SizedBox(height: 42),
-                Image.asset('assets/logo.png', height: 120,),
+                Image.asset('assets/logo.png', height: 120),
                 SizedBox(height: 42),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-            
-                    Text('Username', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w400),),
-                    SizedBox(height: 12,),
+                    Text(
+                      'Username',
+                      style: GoogleFonts.inter(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(height: 12),
                     TextFormField(
                       controller: _usernameController,
                       decoration: InputDecoration(
                         hintText: "Supernova",
-                        hintStyle: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w400, color: Color.fromARGB(255, 48, 93, 124)),
+                        hintStyle: GoogleFonts.inter(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Color.fromARGB(255, 48, 93, 124),
+                        ),
                         filled: true,
                         fillColor: Color.fromARGB(255, 238, 246, 252),
-                    
+
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Color.fromARGB(255, 37, 71, 95)),
-                        ),  
-                    
+                          borderSide: BorderSide(
+                            color: Color.fromARGB(255, 37, 71, 95),
+                          ),
+                        ),
+
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Color.fromARGB(255, 37, 71, 95)),
+                          borderSide: BorderSide(
+                            color: Color.fromARGB(255, 37, 71, 95),
+                          ),
                         ),
                       ),
                     ),
-            
-                    SizedBox(height: 24,),
-            
-            
-                    Text('Kata Sandi', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w400),),
-                    SizedBox(height: 12,),
+
+                    SizedBox(height: 24),
+
+                    Text(
+                      'Kata Sandi',
+                      style: GoogleFonts.inter(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(height: 12),
                     TextFormField(
                       obscureText: kkatasandi,
                       controller: _katasandiController,
                       decoration: InputDecoration(
                         hintText: kkatasandi ? "********" : "Halofilkom123",
-                        hintStyle: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w400, color: Color.fromARGB(255, 48, 93, 124)),
+                        hintStyle: GoogleFonts.inter(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Color.fromARGB(255, 48, 93, 124),
+                        ),
                         filled: true,
                         fillColor: Color.fromARGB(255, 238, 246, 252),
-                    
+
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Color.fromARGB(255, 37, 71, 95)),
-                        ),  
-                    
+                          borderSide: BorderSide(
+                            color: Color.fromARGB(255, 37, 71, 95),
+                          ),
+                        ),
+
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Color.fromARGB(255, 37, 71, 95)),
+                          borderSide: BorderSide(
+                            color: Color.fromARGB(255, 37, 71, 95),
+                          ),
                         ),
-            
+
                         suffixIcon: Padding(
                           padding: const EdgeInsets.only(right: 10),
                           child: IconButton(
@@ -112,49 +138,95 @@ class _DaftarState extends State<Masuk> {
                                 kkatasandi = !kkatasandi;
                               });
                             },
-                            icon: Icon(kkatasandi ? Icons.visibility : Icons.visibility_off, color: Color.fromARGB(255, 229, 158, 74),),
-                                              
+                            icon: Icon(
+                              kkatasandi
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Color.fromARGB(255, 229, 158, 74),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 12,),
+                    SizedBox(height: 12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text('Lupa password?', style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w400, color: Color.fromARGB(255, 48, 93, 124)),),
+                        Text(
+                          'Lupa password?',
+                          style: GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Color.fromARGB(255, 48, 93, 124),
+                          ),
+                        ),
                       ],
                     ),
-            
-                    SizedBox(height: 42,),
-            
+
+                    SizedBox(height: 42),
+
                     Column(
                       children: [
-                        ElevatedButton(onPressed: () {
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Homepage()));
-                        }, style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 37, 71, 95),
-                          minimumSize: Size(double.infinity, 50),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Homepage(),
+                              ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromARGB(255, 37, 71, 95),
+                            minimumSize: Size(double.infinity, 50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            elevation: 0,
                           ),
-                          elevation: 0,
-                        ), child:  Text('Masuk', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),),),
-                        SizedBox(height: 12,),
+                          child: Text(
+                            'Masuk',
+                            style: GoogleFonts.inter(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 12),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Belum punya akun? ', style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w400, color: Color.fromARGB(255, 48, 93, 124)),),
+                            Text(
+                              'Belum punya akun? ',
+                              style: GoogleFonts.inter(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromARGB(255, 48, 93, 124),
+                              ),
+                            ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Daftar()));
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Daftar(),
+                                  ),
+                                );
                               },
-                              child: Text('Daftar', style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w700, color: Color.fromARGB(255, 37, 71, 95)),),
+                              child: Text(
+                                'Daftar',
+                                style: GoogleFonts.inter(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color.fromARGB(255, 37, 71, 95),
+                                ),
+                              ),
                             ),
                           ],
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ],

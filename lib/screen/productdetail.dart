@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart' hide BottomSheet;
+import 'package:flutter/material.dart';
 import 'package:tugas1/models/products.dart';
-import 'package:tugas1/widget/bottomsheet.dart';
+import 'package:tugas1/screen/bayar.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final Product product;
@@ -12,17 +12,27 @@ class ProductDetailPage extends StatelessWidget {
     final navyColor = const Color(0xFF1E3A52);
     final goldColor = const Color(0xFFA66608);
 
+    int quantity = 0;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: navyColor,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, size: 20, color: Colors.white),
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            size: 20,
+            color: Colors.white,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
-          "Detail Barang",
-          style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+          'Detail Barang',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
       ),
@@ -45,9 +55,7 @@ class ProductDetailPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  
                   const SizedBox(height: 24),
-
                   Text(
                     product.name,
                     style: const TextStyle(
@@ -56,22 +64,18 @@ class ProductDetailPage extends StatelessWidget {
                       color: Colors.black,
                     ),
                   ),
-                  
                   const SizedBox(height: 8),
-
                   Text(
                     product.price,
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
-                      color: goldColor, 
+                      color: goldColor,
                     ),
                   ),
-
                   const SizedBox(height: 20),
-
                   Text(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor est nec metus vulputate, ac vestibulum purus suscipit. Nullam pretium ultrices neque, non ultricies nisi venenatis vitae.",
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor est nec metus vulputate, ac vestibulum purus suscipit. Nullam pretium ultrices neque, non ultricies nisi venenatis vitae.',
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.grey[600],
@@ -81,7 +85,7 @@ class ProductDetailPage extends StatelessWidget {
                   GestureDetector(
                     onTap: () {},
                     child: Text(
-                      "Baca lebih lanjut...",
+                      'Baca lebih lanjut...',
                       style: TextStyle(
                         fontSize: 14,
                         color: navyColor,
@@ -89,9 +93,7 @@ class ProductDetailPage extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 30),
-
                   Row(
                     children: [
                       Container(
@@ -101,14 +103,14 @@ class ProductDetailPage extends StatelessWidget {
                           shape: BoxShape.circle,
                           border: Border.all(color: Colors.grey.shade300),
                           image: const DecorationImage(
-                            image: AssetImage("assets/logo.png"), 
+                            image: AssetImage('assets/logo.png'),
                           ),
                         ),
                       ),
                       const SizedBox(width: 12),
                       const Expanded(
                         child: Text(
-                          "BASIC VEGETABLES",
+                          'BASIC VEGETABLES',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
@@ -118,7 +120,7 @@ class ProductDetailPage extends StatelessWidget {
                       const Icon(Icons.star, color: Colors.amber, size: 24),
                       const SizedBox(width: 4),
                       const Text(
-                        "4.7",
+                        '4.7',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -150,8 +152,16 @@ class ProductDetailPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: IconButton(
-                    icon: const Icon(Icons.shopping_cart_outlined, color: Colors.white),
-                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.shopping_cart_outlined,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Bayar(product: product, quantity: quantity,)),
+                      );
+                    },
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -160,12 +170,84 @@ class ProductDetailPage extends StatelessWidget {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                          showModalBottomSheet(
-                            context: context,
-                            builder: (context) => BottomSheet(),
-                            backgroundColor: Colors.transparent,
-                           // isScrollControlled: true,
-                          );
+                        showDialog(
+                          context: context,
+                          builder: (context) => StatefulBuilder(
+                            builder: (context, setState) => AlertDialog(
+                              backgroundColor: navyColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              title: const Text(
+                                'Jumlah',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              content: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  _buildCounterButton(
+                                    icon: Icons.remove,
+                                    onTap: () {
+                                      if (quantity > 1) {
+                                        setState(() => quantity--);
+                                      }
+                                    },
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Text(
+                                    quantity.toString(),
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  _buildCounterButton(
+                                    icon: Icons.add,
+                                    onTap: () {
+                                      setState(() => quantity++);
+                                    },
+                                  ),
+                                ],
+                              ),
+                              actions: [
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Added $quantity items to cart!',
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.white,
+                                      foregroundColor: navyColor,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                    ),
+                                    child: const Text(
+                                      'Beli Sekarang',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
@@ -176,7 +258,7 @@ class ProductDetailPage extends StatelessWidget {
                         elevation: 0,
                       ),
                       child: const Text(
-                        "Beli Sekarang",
+                        'Beli Sekarang',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -187,8 +269,25 @@ class ProductDetailPage extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
         ],
+      ),
+    );
+  }
+
+  static Widget _buildCounterButton({
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: const Color(0xFFFF9F43),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Icon(icon, color: Colors.white, size: 20),
       ),
     );
   }

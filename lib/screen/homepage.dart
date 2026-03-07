@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tugas1/models/products.dart';
+import 'package:tugas1/screen/profile/profile.dart';
 import 'package:tugas1/widget/productcard.dart';
 
 class Homepage extends StatefulWidget {
@@ -149,7 +150,9 @@ class _HomepageState extends State<Homepage> {
                 ),
                 IconButton(
                     icon: const Icon(Icons.person_outline, color: Colors.grey, size: 28),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Profile()));
+                    },
                 ),
             ],
         ),
