@@ -1,4 +1,4 @@
-# Weekly-Report-1
+# Weekly-Report
 weekly report intern bcc 2026 as front end mobile
 
 lokasi tugas week 1 :
